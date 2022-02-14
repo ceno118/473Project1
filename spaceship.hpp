@@ -14,6 +14,9 @@ class Spaceship {
         glm::vec3 velocity;
         glm::vec3 location;
         glm::vec3 scale;
+        glm::vec3 bullet_loc;
+        glm::vec3 bullet_vel;
+        float last_shot;
         float last_thrust;
 
     public:
@@ -31,6 +34,8 @@ class Spaceship {
         void Move (glm::vec2 bound_x, glm::vec2 bound_y);
 
         void Draw (std::vector<unsigned int> textures);
+
+        void Shoot ();
 
         ~Spaceship();
 };

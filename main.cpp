@@ -15,6 +15,7 @@ void processInput(GLFWwindow *window);
 //Global Variables
 
 bool thrusters_fired = false;
+bool shot_fired = false;
 
 Spaceship ship;
 
@@ -130,20 +131,29 @@ void processInput(GLFWwindow *window)
     if (glfwGetKey(window,GLFW_KEY_RIGHT)==GLFW_PRESS) 
     {
         //angle_z-=0.1;
-        ship.Rotate(-0.1);
+        ship.Rotate(-1);
     }
     if (glfwGetKey(window,GLFW_KEY_LEFT)==GLFW_PRESS)
     {
         //angle_z += 0.1;
-        ship.Rotate(0.1);
+        ship.Rotate(1);
     }
     if ((glfwGetKey(window,GLFW_KEY_UP)==GLFW_PRESS) && (!thrusters_fired))
     {
         thrusters_fired = true;
-        ship.Thrust(0.0001);
+        ship.Thrust(0.001);
     }
     if (glfwGetKey(window,GLFW_KEY_UP)==GLFW_RELEASE) {
         thrusters_fired = false;
+    }
+
+    if ((glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) && (!shot_fired)){
+        shot_fired = true;
+        ship.Shoot();
+    }
+
+    if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_RELEASE){
+        shot_fired = false;
     }
 
 }
